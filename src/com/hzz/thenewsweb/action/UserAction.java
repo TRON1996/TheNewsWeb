@@ -16,6 +16,7 @@ import java.io.PrintWriter;
 public class UserAction extends ActionSupport {
     private static final long serialVersionUID = 1L;
     private User user;
+    private String ni;
     private String strUser;
     private Userservice userservice;
     HttpServletResponse response= ServletActionContext.getResponse();
