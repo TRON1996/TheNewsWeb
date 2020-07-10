@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping package="com.hzz.thenewsweb.model">
+
+<class name="News" table="Table_News">
+
+	<id column="id" name="id" type="integer"><generator class="native" /></id>
+<!--	<property name="user" column="user" type="string" />-->
+ 
+  <property column="content" name="content" type="text"/>
+  <property column="time" name="time" type="string"/>
+  <property column="imgName" name="imgName" type="string"/>
+  <property column="title" name="title" type="string"/>
+  <property column="type" name="type" type="string"/>
+
+</class>
+</hibernate-mapping>
