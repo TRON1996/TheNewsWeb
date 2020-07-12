@@ -12,6 +12,9 @@
   <property column="imgName" name="imgName" type="string"/>
   <property column="title" name="title" type="string"/>
   <property column="type" name="type" type="string"/>
+<many-to-one name="user" class="User" lazy="false">
+  <column name="userid"></column>
+</many-to-one>
 
 </class>
 </hibernate-mapping>

@@ -12,6 +12,7 @@
   <property column="phone" name="phone" type="string"/>
   <property column="password" name="password" type="string"/>
   <property column="photo" name="photo" type="string"/>
+  <property column="selfinfo" name="selfinfo" type="string"/>
 
 </class>
 </hibernate-mapping>

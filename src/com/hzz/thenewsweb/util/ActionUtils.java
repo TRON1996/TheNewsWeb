@@ -4,7 +4,6 @@ import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.apache.struts2.ServletActionContext;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.File;
@@ -16,6 +15,15 @@ import java.util.List;
 import java.util.Map;
 
 public class ActionUtils {
+
+    public static  void backuserData(String str) throws IOException{
+        HttpServletResponse response=ServletActionContext.getResponse();
+        response.setCharacterEncoding("UTF-8");
+        PrintWriter printWriter=response.getWriter();
+        printWriter.write(str);
+        printWriter.flush();
+        printWriter.close();
+    }
 	public static void actionPrintWrite(String content) throws IOException {
 		HttpServletResponse response=ServletActionContext.getResponse();
 		HttpServletRequest request=ServletActionContext.getRequest();
@@ -36,28 +44,20 @@ public class ActionUtils {
 	 */
 	public static Map<String,String> MultipartFormResponse(String discCachePath,String savePath) throws Exception {
 		Map<String,String> map=null;
-	
 		HttpServletRequest request=ServletActionContext.getRequest();
 		HttpServletResponse response=ServletActionContext.getResponse();
-		//涓婁紶鏂囦欢鍚� 
 		String fileName=null;
 		String path=ServletActionContext.getServletContext().getRealPath(savePath);
 		File uploadPath = new File(path);
         if (!uploadPath.exists()) {
         	uploadPath.mkdirs();
         }
- 
         request.setCharacterEncoding("utf-8");  
-        response.setCharacterEncoding("utf-8");  
-          
-        //妫�娴嬫槸涓嶆槸瀛樺湪涓婁紶鏂囦欢  
-        boolean isMultipart = ServletFileUpload.isMultipartContent(request);  
-          
+        response.setCharacterEncoding("utf-8");
+        boolean isMultipart = ServletFileUpload.isMultipartContent(request);
         if(isMultipart){  
         	map=new HashMap<String, String>();
-        	
-            DiskFileItemFactory factory = new DiskFileItemFactory();  
-            //鎸囧畾鍦ㄥ唴瀛樹腑缂撳瓨鏁版嵁澶у皬,鍗曚綅涓篵yte,杩欓噷璁句负1Mb  
+            DiskFileItemFactory factory = new DiskFileItemFactory();
             factory.setSizeThreshold(1024*1024);  
             //璁剧疆涓�鏃︽枃浠跺ぇ灏忚秴杩噂etSizeThreshold()鐨勫�兼椂鏁版嵁瀛樻斁鍦ㄧ‖鐩樼殑鐩綍   
             factory.setRepository(new File("/Users/gudonghu/temp"));  

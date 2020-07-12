@@ -3,6 +3,7 @@ package com.hzz.thenewsweb.action;
 import com.google.gson.Gson;
 import com.hzz.thenewsweb.model.User;
 import com.hzz.thenewsweb.service.Userservice;
+import com.hzz.thenewsweb.util.ActionUtils;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import org.apache.struts2.ServletActionContext;
@@ -16,37 +17,38 @@ import java.io.PrintWriter;
 public class UserAction extends ActionSupport {
     private static final long serialVersionUID = 1L;
     private User user;
-    private String ni;
     private String strUser;
     private Userservice userservice;
-    HttpServletResponse response= ServletActionContext.getResponse();
+    private String updateuserinfo;
     Gson gson = new Gson();
+
     @Action(value = "userAction")
     public void newInfoAction() throws Exception {
-          User user = gson.fromJson(strUser, User.class);
+        User user = gson.fromJson(strUser, User.class);
         System.out.println(strUser);
         userservice.insert(user);
     }
 
 
     @Action(value = "loginUser")
-    public void loginuser()throws Exception{
-        user=gson.fromJson(strUser,User.class);
-        User userbean=userservice.login(user);
-        String userjson=new Gson().toJson(userbean);
-        PrintWriter pw=response.getWriter();
-        response.setCharacterEncoding("utf-8");
-        if(userbean!=null){
-        pw.write(userjson);
-        pw.flush();
-        pw.close();
-        }else {
-            ActionContext.getContext().getSession().put("msg","账号密码错误");
-            pw.write("error");
-            pw.flush();
-            pw.close();
+    public void loginuser() throws Exception {
+        user = gson.fromJson(strUser, User.class);
+        User userbean = userservice.login(user);
+        String userjson = new Gson().toJson(userbean);
+
+        if (userbean != null) {
+            ActionUtils.backuserData(userjson);
+        } else {
+            ActionUtils.backuserData("error");
         }
     }
+
+    @Action(value = "updateuserinfo")
+    public void upinfoUser() throws  Exception {
+       User user = gson.fromJson(updateuserinfo, User.class);
+         userservice.update(user);
+    }
+
 
     public User getUser() {
         return user;
@@ -70,5 +72,13 @@ public class UserAction extends ActionSupport {
 
     public void setUserservice(Userservice userservice) {
         this.userservice = userservice;
+    }
+
+    public String getUpdateuserinfo() {
+        return updateuserinfo;
+    }
+
+    public void setUpdateuserinfo(String updateuserinfo) {
+        this.updateuserinfo = updateuserinfo;
     }
 }

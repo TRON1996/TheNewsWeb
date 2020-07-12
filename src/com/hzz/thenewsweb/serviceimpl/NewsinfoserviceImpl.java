@@ -15,10 +15,12 @@ public class NewsinfoserviceImpl implements Newsinfoservice {
 	}
 
 	public NewsinfoDao getNewsinfodao() {
+
 		return newsinfodao;
 	}
 
 	public void setNewsinfodao(NewsinfoDao newsinfodao) {
+
 		this.newsinfodao = newsinfodao;
 	}
 
