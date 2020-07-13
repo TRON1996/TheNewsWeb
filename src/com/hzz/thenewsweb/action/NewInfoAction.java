@@ -5,8 +5,15 @@ import com.hzz.thenewsweb.model.News;
 import com.hzz.thenewsweb.service.Newsinfoservice;
 import com.opensymphony.xwork2.ActionSupport;
 
+import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.ParentPackage;
+
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.sql.SQLException;
+import java.util.List;
 
 
 @ParentPackage("struts-default")
@@ -26,8 +33,23 @@ public class NewInfoAction extends ActionSupport {
 	@Action(value = "NewInfoAction")
 	public void newInfoAction() throws Exception {
 		News news=gson.fromJson(strNews, News.class);
+		news.setStringimg(gson.toJson(news.getImgName()));
 		System.out.println(strNews);
 		newsinfoservice.insert(news);
+	}
+
+
+
+	@Action(value = "newsselect")
+	public void newsselect() throws SQLException, IOException {
+		HttpServletResponse response= ServletActionContext.getResponse();
+		List<News> list= newsinfoservice.select();
+		String jsonStr=new Gson().toJson(list);
+		response.setCharacterEncoding("utf-8");
+		PrintWriter pw=response.getWriter();
+		pw.write(jsonStr);
+		pw.flush();
+		pw.close();
 	}
 
 

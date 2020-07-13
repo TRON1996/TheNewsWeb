@@ -1,6 +1,8 @@
 package com.hzz.thenewsweb.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class News implements Serializable {
@@ -12,10 +14,20 @@ public class News implements Serializable {
 	private int id;
     private String title;
     private String content;
-    private String imgName;
+    private List<String> imgName=new ArrayList<>();;
     private String type;
     private String time;
     private User user;
+	private  String stringimg;
+
+	public String getStringimg() {
+		return stringimg;
+	}
+
+	public void setStringimg(String stringimg) {
+		this.stringimg = stringimg;
+	}
+
 	public int getId() {
 		return id;
 	}
@@ -34,12 +46,7 @@ public class News implements Serializable {
 	public void setContent(String content) {
 		this.content = content;
 	}
-	public String getImgName() {
-		return imgName;
-	}
-	public void setImgName(String imgName) {
-		this.imgName = imgName;
-	}
+
 	public String getType() {
 		return type;
 	}
@@ -59,5 +66,11 @@ public class News implements Serializable {
 		this.user = user;
 	}
 
+	public List<String> getImgName() {
+		return imgName;
+	}
 
+	public void setImgName(List<String> imgName) {
+		this.imgName = imgName;
+	}
 }

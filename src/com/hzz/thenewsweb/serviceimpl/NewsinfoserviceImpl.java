@@ -5,6 +5,10 @@ import com.hzz.thenewsweb.dao.NewsinfoDao;
 import com.hzz.thenewsweb.model.News;
 import com.hzz.thenewsweb.service.Newsinfoservice;
 
+
+import java.sql.SQLException;
+import java.util.List;
+
 public class NewsinfoserviceImpl implements Newsinfoservice {
 	private NewsinfoDao newsinfodao;
 
@@ -12,6 +16,12 @@ public class NewsinfoserviceImpl implements Newsinfoservice {
 	public Object insert(News news) {
 		// TODO Auto-generated method stub
 		return newsinfodao.save(news);
+	}
+
+	@Override
+	public List<News> select() throws SQLException {
+		String hql="from News";
+		return newsinfodao.select(hql);
 	}
 
 	public NewsinfoDao getNewsinfodao() {

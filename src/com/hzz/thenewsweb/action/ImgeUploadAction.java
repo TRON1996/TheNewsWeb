@@ -14,4 +14,10 @@ public class ImgeUploadAction extends ActionSupport {
     public void multipartAction() throws Exception {
         ActionUtils.ImgsUploadResponse("D:\\hzz\\temp");
     }
+
+    @Action(value = "logingimgup")
+    public void loginimgAction() throws Exception {
+
+        ActionUtils.ImgsUploadResponse("D:\\hzz\\temp");
+    }
 }

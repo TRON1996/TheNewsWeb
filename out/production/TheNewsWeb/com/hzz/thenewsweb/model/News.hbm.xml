@@ -7,11 +7,12 @@
 	<id column="id" name="id" type="integer"><generator class="native" /></id>
 <!--	<property name="user" column="user" type="string" />-->
  
-  <property column="content" name="content" type="text"/>
+  <property column="content" name="content" type="string"/>
   <property column="time" name="time" type="string"/>
-  <property column="imgName" name="imgName" type="string"/>
+  <property column="imgName" name="stringimg" type="string"/>
   <property column="title" name="title" type="string"/>
   <property column="type" name="type" type="string"/>
+
 <many-to-one name="user" class="User" lazy="false">
   <column name="userid"></column>
 </many-to-one>
