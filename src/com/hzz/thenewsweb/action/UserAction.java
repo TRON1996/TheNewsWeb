@@ -39,7 +39,7 @@ public class UserAction extends ActionSupport {
         if (userbean != null) {
             ActionUtils.backuserData(userjson);
         } else {
-            ActionUtils.backuserData("error");
+            ActionUtils.backuserData("");
         }
     }
 

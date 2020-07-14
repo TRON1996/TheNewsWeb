@@ -10,4 +10,5 @@ import java.util.List;
 public interface Newsinfoservice {
 Object insert(News news);
  List<News> select() throws SQLException;
+ News datialShow(int newId) throws SQLException;
 }

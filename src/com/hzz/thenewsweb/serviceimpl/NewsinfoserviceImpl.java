@@ -24,6 +24,11 @@ public class NewsinfoserviceImpl implements Newsinfoservice {
 		return newsinfodao.select(hql);
 	}
 
+	@Override
+	public News datialShow(int newId) throws SQLException {
+		return newsinfodao.findByID(News.class,newId);
+	}
+
 	public NewsinfoDao getNewsinfodao() {
 
 		return newsinfodao;
